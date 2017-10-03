@@ -303,8 +303,8 @@ bool isComplete(const Vehicle& v, const int board[][MAX_ARR]){
 }
 
 bool solve(int& numMoves, Vehicle cars[], int board[][MAX_ARR], int& best, const int& numCars, bool& result){
-   // print(board);
-    //usleep(microseconds);
+    print(board);
+    usleep(microseconds);
     if(isComplete(cars[0], board)){
         
         if(numMoves <= best){
@@ -327,8 +327,6 @@ bool solve(int& numMoves, Vehicle cars[], int board[][MAX_ARR], int& best, const
             result = solve(numMoves, cars, board, best, numCars, result);
             moveBackward(cars[i], board);
         }
-    }
-    for(int i =0; i< numCars; i++){
         if(moveBackward(cars[i], board)){
             cout << "Car " << i + 1 << " has been moved backwards" << endl;
             numMoves += 1;
