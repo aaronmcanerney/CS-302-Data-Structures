@@ -1,0 +1,116 @@
+\hypertarget{class_timer}{}\section{Timer Class Reference}
+\label{class_timer}\index{Timer@{Timer}}
+
+
+{\ttfamily \#include $<$Timer.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_timer_a5f16e8da27d2a5a5242dead46de05d97}{Timer} ()
+\item 
+void \hyperlink{class_timer_a3a8b5272198d029779dc9302a54305a8}{start} ()  throw (runtime\+\_\+error)
+\item 
+void \hyperlink{class_timer_a63f0eb44b27402196590a03781515dba}{stop} ()  throw (logic\+\_\+error)
+\item 
+double \hyperlink{class_timer_ad306e18f8d8a0296e001683f92d7f86e}{get\+Elapsed\+Time} () const   throw (logic\+\_\+error)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Timer@{Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!Timer@{Timer}}
+\subsubsection[{\texorpdfstring{Timer()}{Timer()}}]{\setlength{\rightskip}{0pt plus 5cm}Timer\+::\+Timer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_timer_a5f16e8da27d2a5a5242dead46de05d97}{}\label{class_timer_a5f16e8da27d2a5a5242dead46de05d97}
+Constructor that intializes timer\+Was\+Started to false and begin time and duration to -\/1 to indicate that the clock has not read time yet
+
+\begin{DoxyReturn}{Returns}
+constructor
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+unitialized timer object 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+an initialized timer object with beging time and end time being -\/1 to indicate stopped 
+\end{DoxyPostcond}
+
+
+\subsection{Member Function Documentation}
+\index{Timer@{Timer}!get\+Elapsed\+Time@{get\+Elapsed\+Time}}
+\index{get\+Elapsed\+Time@{get\+Elapsed\+Time}!Timer@{Timer}}
+\subsubsection[{\texorpdfstring{get\+Elapsed\+Time() const }{getElapsedTime() const }}]{\setlength{\rightskip}{0pt plus 5cm}double Timer\+::get\+Elapsed\+Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const throw  logic\+\_\+error) }\hypertarget{class_timer_ad306e18f8d8a0296e001683f92d7f86e}{}\label{class_timer_ad306e18f8d8a0296e001683f92d7f86e}
+Get\+Elapsed\+Time method that uses the begin\+Time and duration to calculate the amount of time that has passed
+
+\begin{DoxyReturn}{Returns}
+double that is duration -\/ begin\+Time
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+two timevals indicating the start and end of an interval
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+a single double that represents the amount of time passed
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em throws} & logic error if either of the timevals have not been set \\
+\hline
+\end{DoxyExceptions}
+\index{Timer@{Timer}!start@{start}}
+\index{start@{start}!Timer@{Timer}}
+\subsubsection[{\texorpdfstring{start()}{start()}}]{\setlength{\rightskip}{0pt plus 5cm}void Timer\+::start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) throw  runtime\+\_\+error) }\hypertarget{class_timer_a3a8b5272198d029779dc9302a54305a8}{}\label{class_timer_a3a8b5272198d029779dc9302a54305a8}
+Start method that starts the timer by calling gettimeofday() and sets timer\+Was\+Started to true
+
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+unstarted timer and timer\+Was\+Started is false
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+timer is started and begin time has been set as well as timer\+Was\+Started (true)
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em throws} & runtime error if gettimeofday does not set the time \\
+\hline
+\end{DoxyExceptions}
+\index{Timer@{Timer}!stop@{stop}}
+\index{stop@{stop}!Timer@{Timer}}
+\subsubsection[{\texorpdfstring{stop()}{stop()}}]{\setlength{\rightskip}{0pt plus 5cm}void Timer\+::stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) throw  logic\+\_\+error) }\hypertarget{class_timer_a63f0eb44b27402196590a03781515dba}{}\label{class_timer_a63f0eb44b27402196590a03781515dba}
+Stop method that stops the timer by calling gettimeofday() and sets timer\+Was\+Started to false
+
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+started timer and timer\+Was\+Started is true
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+timer is stopped and stopped has been set as well as timer\+Was\+Started (false)
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em throws} & logic error an attempt to stop the timer is made prior to starting the timer \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_timer_8h}{Timer.\+h}\item 
+\hyperlink{_timer_8cpp}{Timer.\+cpp}\end{DoxyCompactItemize}
