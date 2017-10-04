@@ -1,3 +1,18 @@
+/** @file rushhour.cpp
+ * @author Aaron Mcanerney
+@version Revision 1.0
+@breif finds all of the pumpkins for charlie brown and his friends
+@details for every patch, a boolean array is created. The boolean array is iterated
+over and marked off once each of the indexes has been visited. The loop 
+passes an index to the recursive function where (if it is a pumpkin),
+the neighbors are found and recursed on. Once the recursive call is over,
+we have a modified boolean array indicating the unvisited portions of the patch
+and the number of pumkins in that portion of the patch. Upon completing the search,
+the results are sorted and outputted.
+@date 09/13/2017
+**/
+
+
 #include<iostream>
 #include <unistd.h>
 
@@ -26,7 +41,7 @@ bool moveForward(Vehicle& v, int board[][MAX_ARR]);
 bool moveBackward(Vehicle& v, int board[][MAX_ARR]);
 bool isComplete(const Vehicle& v, const int board[][MAX_ARR]);
 bool isHorizontal(const Vehicle& v);
-bool solve(int& numMoves, Vehicle cars[], int board[][MAX_ARR], int& best,const int& numCars, bool& result);
+void solve(int numMoves, Vehicle cars[], int board[][MAX_ARR], int& best,const int& numCars, bool& result);
 bool isCollisionForward(const Vehicle& v, const int board[][MAX_ARR]);
 bool isCollisionBackward(const Vehicle& v, const int board[][MAX_ARR]);
 
@@ -38,16 +53,26 @@ int main(){
     fillArray(board);
 
     read(board, numCars, cars);
-    print(board);
+    //print(board);
     int moves = 0;
     int best = 10;
     bool result = false;
-    if(solve(moves, cars,board,best, numCars, result)){
-        cout << "Solved in "<< best<< " moves"<<endl;
+
+    
+    solve(moves, cars,board,best, numCars, result);
+    if(result){
+        cout << "Scenario 1" << " requires " << best << " moves"<<endl;
+    }
+    else{
+        cout << "Cant be solved "<< endl;
+    }
+    /*
+        cout << "Scenario " <<" requires " << best<< " moves"<<endl;
     }
     else{
         cout <<"Impossibruuuuuu"<<endl;
     }
+    */
     //print(board);
     return 1;
 }
@@ -302,39 +327,40 @@ bool isComplete(const Vehicle& v, const int board[][MAX_ARR]){
     }
 }
 
-bool solve(int& numMoves, Vehicle cars[], int board[][MAX_ARR], int& best, const int& numCars, bool& result){
-    print(board);
-    usleep(microseconds);
-    if(isComplete(cars[0], board)){
-        
+void solve(int numMoves, Vehicle cars[], int board[][MAX_ARR], int& best, const int& numCars, bool& result){
+    //cout << "Number of moves " << numMoves<<endl;
+    //print(board);
+    //usleep(microseconds);
+
+    if(isComplete(cars[0], board) || numMoves >= best){
         if(numMoves <= best){
-            result = true;
+            //cout << "I know that the board has been solved in " << numMoves <<endl;
             best = numMoves;
-            numMoves = 0;
-            return true;
+            //numMoves = 0;
+            result = true;
+            return;
         }
-
-        if(numMoves > best){
-            numMoves = 0;
-            return false;
-        }
-
+        return;
     }
-    for(int i = 0; i < numCars; i++){
-        if(moveForward(cars[i], board)){
-            cout << "Car " << i + 1 << " has been moved forward"<<endl;
-            numMoves += 1;
-            result = solve(numMoves, cars, board, best, numCars, result);
-            moveBackward(cars[i], board);
+    else{ 
+        for(int i = 0; i < numCars; i++){
+            if(moveForward(cars[i], board)){
+                //cout << "Car " << i + 1 << " has been moved forward"<<endl;
+                numMoves += 1;
+                solve(numMoves, cars, board, best, numCars, result);
+                //cout << "bout to move back my dude"<<endl;
+                moveBackward(cars[i], board);
+            }
+            
+            if(moveBackward(cars[i], board)){
+                //cout << "Car " << i + 1 << " has been moved backwards" << endl;
+                numMoves += 1;
+                solve(numMoves, cars, board, best, numCars, result);
+                moveForward(cars[i], board);
+            }
+
         }
-        if(moveBackward(cars[i], board)){
-            cout << "Car " << i + 1 << " has been moved backwards" << endl;
-            numMoves += 1;
-            result = solve(numMoves, cars, board, best, numCars, result);
-            moveForward(cars[i], board);
-        }
+    return;
     }
-    return result;
-   
 }
 
