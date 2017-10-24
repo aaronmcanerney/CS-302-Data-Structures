@@ -26,7 +26,22 @@ class TestData
         { keyField = newKey; }   // Set the key
 
     int getKey () const
-        { return keyField; }     // Returns the key
+        { return keyField; }  
+           // Returns the key
+/*
+    bool operator>(const TestData& t){
+        return keyField > t.keyField;
+    }
+    bool operator<(const TestData& t){
+        return keyField < t.keyField;
+    }
+    bool operator>(const int& i){
+        return keyField > i;
+    }
+    bool operator<(const int& i){
+        return keyField < i;
+    }
+    */
 
   private:
 

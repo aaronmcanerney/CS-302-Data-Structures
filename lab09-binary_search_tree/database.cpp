@@ -44,13 +44,13 @@ struct IndexEntry
     int acctID;              // (Key) Account identifier
     long recNum;             // Record number
 
-    int key () const
+    int getKey () const
         { return acctID; }   // Return key field
 };
 
 //--------------------------------------------------------------------
 
-void main ()
+int main ()
 {
     ifstream acctFile ("accounts.dat");   // Accounts database file
     AccountRecord acctRec;                // Account record
@@ -61,10 +61,28 @@ void main ()
 
     // Iterate through the database records. For each record, read the
     // account ID and add the (account ID, record number) pair to the
-    // index.
+    // index
 
+    if(acctFile){
+        //get file size and divide by record 
+        //length for number of records
+        acctFile.seekg(0,acctFile.end);
+        int size = acctFile.tellg();
+        acctFile.seekg(0, acctFile.beg);
+        size = size / bytesPerRecord + 1;
+        
+        //populate BST
+        for(int i = 0; i < size; i++){
+            entry.recNum = i;
+            acctFile.seekg(i *(bytesPerRecord-1), acctFile.beg) >> entry.acctID;
+            index.insert(entry);
+        }
 
+    }
+   
+    cout << "Account IDs :";
     // Output the account IDs in ascending order.
+    index.writeKeys();
 
 
     // Clear the status flags for the database file.
@@ -73,6 +91,24 @@ void main ()
 
     // Read an account ID from the keyboard and output the
     // corresponding record.
+    "Enter account ID : ";
+    cin >> searchID;
+    while(searchID != -1){
 
+        if(index.retrieve(searchID, entry)){
+        
+            acctFile.seekg(entry.recNum * (bytesPerRecord -1)
+                ,acctFile.beg) >> acctRec.acctID >> acctRec.firstName >> acctRec.lastName
+                    >> acctRec.balance;
+            
+            cout << acctRec.acctID << " " << acctRec.firstName << " " << acctRec.lastName <<
+                " " << acctRec.balance << endl;
+        }
+        else{
+            cout << "No record with that account ID"<<endl;
+            cout << "Enter account ID (EOF to quit): ";
+        }
+    }
 
+    acctFile.close();
 }
