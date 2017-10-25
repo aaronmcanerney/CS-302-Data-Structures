@@ -1,3 +1,12 @@
+/** @file BStree.cpp
+ @author Aaron Mcanerney and lab book people
+@version Revision 1.0
+@breif data base implementation
+@details Impleneted data base using the templated binary search tree.
+Functionality as specified by c++ lab book.
+@date 10/15/2017
+**/
+
 //--------------------------------------------------------------------
 //
 //  Laboratory 11, In-lab Exercise 1                     database.cs
