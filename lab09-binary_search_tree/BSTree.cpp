@@ -204,7 +204,10 @@ bool BSTree<T, Key>::retrieveHelper(BSTreeNode* node, const Key& key, T& data) c
             data = node->dataItem;
             return true;
         }
-        return retrieveHelper(node->left, key, data) || retrieveHelper(node->right, key, data);
+        if(node->dataItem.getKey() > key){
+            return retrieveHelper(node->left, key, data);
+        }
+        return retrieveHelper(node->right, key, data);
     }
     return false;
 }
