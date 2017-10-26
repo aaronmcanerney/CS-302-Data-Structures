@@ -257,7 +257,7 @@ bool BSTree<T, Key>::removeHelper(BSTreeNode*& node, const Key& key){
             else if(node->left == NULL && node->right != NULL){
                 node->dataItem.setKey(node->right->dataItem.getKey());
                 BSTreeNode* temp = node->right;
-                node->right = NULL;
+                node->right = temp->right;
                 delete temp;
                 return true;
             }
@@ -265,7 +265,7 @@ bool BSTree<T, Key>::removeHelper(BSTreeNode*& node, const Key& key){
             else if(node->left != NULL && node->right == NULL){
                 node->dataItem.setKey(node->left->dataItem.getKey());
                 BSTreeNode* temp = node->left;
-                node->left = NULL;
+                node->left = temp->left;
                 delete temp;
                 return true;
             }

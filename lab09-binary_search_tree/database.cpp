@@ -106,7 +106,13 @@ int main ()
 
     // Read an account ID from the keyboard and output the
     // corresponding record.
+<<<<<<< HEAD
     while(searchID != cin.eof()){
+=======
+    cout << endl << "Enter account ID : ";
+    cin >> searchID;
+    //while(!cin.eof()){
+>>>>>>> e4dcb423663e11a1121c51a2979a24b0834bdd07
 
         if(index.retrieve(searchID, entry)){
         
@@ -124,7 +130,7 @@ int main ()
             cout << "Enter account ID (EOF to quit): ";
             cin >> searchID;
         }
-    }
+   // }
 
     acctFile.close();
 }
