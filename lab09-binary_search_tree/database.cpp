@@ -88,21 +88,25 @@ int main ()
         }
 
     }
+
+    acctFile.clear();
    
-    cout << "Account IDs :";
-    // Output the account IDs in ascending order.
+  // Output the account IDs in ascending order.
+    cout << endl << "Account IDs :" << endl;
     index.writeKeys();
+    cout << endl<<endl;
+
+    cout << "Enter account ID : ";
+    cin >> searchID;
 
 
     // Clear the status flags for the database file.
 
-    acctFile.clear();
+    
 
     // Read an account ID from the keyboard and output the
     // corresponding record.
-    "Enter account ID : ";
-    cin >> searchID;
-    while(searchID != -1){
+    while(searchID != cin.eof()){
 
         if(index.retrieve(searchID, entry)){
         
@@ -112,10 +116,13 @@ int main ()
             
             cout << acctRec.acctID << " " << acctRec.firstName << " " << acctRec.lastName <<
                 " " << acctRec.balance << endl;
+                cout << "Enter account ID : ";
+                cin >> searchID; 
         }
         else{
             cout << "No record with that account ID"<<endl;
             cout << "Enter account ID (EOF to quit): ";
+            cin >> searchID;
         }
     }
 

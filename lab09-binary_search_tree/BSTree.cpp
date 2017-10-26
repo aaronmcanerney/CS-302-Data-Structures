@@ -273,7 +273,7 @@ bool BSTree<T, Key>::removeHelper(BSTreeNode*& node, const Key& key){
                 //one step case
                 if(temp->right == NULL){
                     node->dataItem.setKey(temp->dataItem.getKey());
-                    node->left = NULL;
+                    node->left = temp->left;
                     delete temp;
                     return true;
                 }
@@ -289,12 +289,16 @@ bool BSTree<T, Key>::removeHelper(BSTreeNode*& node, const Key& key){
                 return true;
             }
         }
-        else{
-            return removeHelper(node->left, key) || removeHelper(node->right, key);
+        if(node->dataItem.getKey() > key){
+            return removeHelper(node->left,key);
+        }
+        if(node->dataItem.getKey() < key){
+            return removeHelper(node->right, key);
         }
     }
     return false;
 }
+
 
 /**
 *writeKeys  writes the keys to console in ascending order
@@ -309,7 +313,7 @@ bool BSTree<T, Key>::removeHelper(BSTreeNode*& node, const Key& key){
 template<class T, class Key>
 void BSTree<T,Key>::writeKeys() const {
     writeKeyHelper(root);
-    //cout << endl;
+    cout << endl;
 }
 
 /**
