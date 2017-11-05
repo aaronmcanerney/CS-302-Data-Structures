@@ -259,6 +259,7 @@ bool BSTree<T, Key>::removeHelper(BSTreeNode*& node, const Key& key){
                 BSTreeNode* temp = node->right;
                 node->right = temp->right;
                 delete temp;
+                //temp = NULL;
                 return true;
             }
             //node has only left child
@@ -267,6 +268,7 @@ bool BSTree<T, Key>::removeHelper(BSTreeNode*& node, const Key& key){
                 BSTreeNode* temp = node->left;
                 node->left = temp->left;
                 delete temp;
+                //temp = NULL;
                 return true;
             }
             //two children family - potentially considering a third...
@@ -289,6 +291,7 @@ bool BSTree<T, Key>::removeHelper(BSTreeNode*& node, const Key& key){
                 node->dataItem.setKey(tracer->dataItem.getKey());
                 temp->right = NULL;
                 delete tracer;
+                //tracer = NULL;
                 return true;
             }
         }
