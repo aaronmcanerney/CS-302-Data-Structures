@@ -274,25 +274,11 @@ bool BSTree<T, Key>::removeHelper(BSTreeNode*& node, const Key& key){
             //two children family - potentially considering a third...
             else{
                 BSTreeNode* temp = node->left;
-                BSTreeNode* tracer = node->left;
-                //one step case
-                if(temp->right == NULL){
-                    node->dataItem.setKey(temp->dataItem.getKey());
-                    node->left = temp->left;
-                    delete temp;
-                    return true;
-                }
-                //tracer will be one step ahead of temp
-                tracer = tracer->right;
-                while(tracer->right != NULL){
+                while(temp->right != NULL){
                     temp = temp->right;
-                    tracer = tracer->right;
                 }
-                node->dataItem.setKey(tracer->dataItem.getKey());
-                temp->right = NULL;
-                delete tracer;
-                //tracer = NULL;
-                return true;
+                node->dataItem.setKey(temp->dataItem.getKey());
+                return removeHelper(node->left, temp->dataItem.getKey());
             }
         }
         if(node->dataItem.getKey() > key){
