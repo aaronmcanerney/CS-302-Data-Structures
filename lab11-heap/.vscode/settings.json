@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "string": "cpp",
+        "algorithm": "cpp",
+        "atomic": "cpp",
+        "ios": "cpp",
+        "string_view": "cpp",
+        "system_error": "cpp",
+        "stdexcept": "cpp"
+    }
+}
