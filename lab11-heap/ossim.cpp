@@ -44,25 +44,37 @@ int main ()
         j;                       // Loop counter
 
     // Seed the random number generator
-    srand( (unsigned int) time( NULL ) );
+    srand( 7 );
 
     cout << endl << "Enter the number of priority levels : ";
     cin >> numPtyLevels;
 
     cout << "Enter the length of time to run the simulator : ";
     cin >> simLength;
-
+    int k;
     for ( minute = 0 ; minute < simLength ; minute++ )
     {
         // Dequeue the first task in the queue (if any).
-	// Your code here
+        if(!taskPQ.isEmpty()){
+            task = taskPQ.dequeue();
+            cout << "At " << minute << " dequeued : "<< task.priority << " " << task.arrived << " " << minute - task.arrived << endl;
+        }
+        k = rand() % 4;
+        if(k == 1){
+            task.priority = rand() % numPtyLevels;
+            task.arrived = minute;
+            taskPQ.enqueue(task);
+        }
+        if(k == 2){
 
+            task.priority = rand() % numPtyLevels;
+            task.arrived = minute;
+            taskPQ.enqueue(task);
 
-        // Determine the number of new tasks and add them to
-        // the queue.
-	// Your code here
-
-
+            task.priority = rand() % numPtyLevels;
+            task.arrived = minute;
+            taskPQ.enqueue(task);
+        }
     }
 
     return 0;
