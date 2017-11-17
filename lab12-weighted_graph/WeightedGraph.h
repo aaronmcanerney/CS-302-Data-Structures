@@ -31,10 +31,10 @@ class WeightedGraph
 	string getLabel( ) const { return label; }
 	void setColor(char newColor) { color = newColor; }
 	char getColor() const { return color; }
-
+    
       private:
-	string label;   // Vertex label
-	char color;
+        string label;   // Vertex label
+        char color;
     };
 
     //--------------------------------------------------------------------
@@ -74,9 +74,26 @@ class WeightedGraph
     void showShortestPaths () const;
     bool hasProperColoring() const;
     bool areAllEven () const;
-
+    
+    inline bool inBound(int index){
+      if(index >= 0 && index < maxSize*maxSize){
+        return true;
+      }
+      return false;
+    }
+    
+    inline bool inBoundV(int index){
+      if(index >= 0 && index < ){
+        return true;
+      }
+      return false;
+    }
+    inline int conv1D(int row, int col){
+        return (maxSize * row) + col;
+    }
+    
   private:
-
+    
     // Facilitator functions
     int getIndex ( const string& v ) const;          // Converts vertex label to an
                                                //   adjacency matrix index
