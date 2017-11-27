@@ -82,13 +82,14 @@ class WeightedGraph
       return false;
     }
     
-    inline bool inBoundV(int index){
-      if(index >= 0 && index < ){
+inline bool inBoundV(int index) const {
+      if(index >= 0 && index < maxSize){
         return true;
       }
       return false;
     }
-    inline int conv1D(int row, int col){
+
+    inline int conv1D(int row, int col) const {
         return (maxSize * row) + col;
     }
     
@@ -96,8 +97,8 @@ class WeightedGraph
     
     // Facilitator functions
     int getIndex ( const string& v ) const;          // Converts vertex label to an
-                                               //   adjacency matrix index
-                                       
+                                             //   adjacency matrix index
+    void fillMatrix();
     int getEdge ( int row, int col ) const;          // Get edge weight using
                                                //   adjacency matrix indices
     void setEdge ( int row, int col, int wt);  // Set edge weight using
