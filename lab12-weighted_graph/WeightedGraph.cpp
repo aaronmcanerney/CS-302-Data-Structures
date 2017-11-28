@@ -226,20 +226,22 @@ void WeightedGraph::removeVertex ( const string& v ) throw ( logic_error ){
         for(int i = removal; i < size - 1; i++){
             vertexList[i] = vertexList[i+1];
         }
-        int count = removal;
-        if(removal != size - 1){
-            for(int i = 0; i < size; i++){
-                adjMatrix[count] = adjMatrix[count + 1];
-                count += size;
-            }
-            count = removal * size;
-            for(int i =0; i < size; i++){
-                cout << "Count = " << count <<endl;
-                cout << "count + size " << count + size << endl; 
-                adjMatrix[count] = adjMatrix[count + size];
-                count++;
-            }
+        int cap = size * size;
+        cout << "cap " << cap<<endl;
+        cout << "removal " << removal << endl;
+        for(int i = removal; i < cap; i += size){
+            cout << "iterator " << i<<endl;
+            adjMatrix[i] = adjMatrix[i+1];
+            cout << "matrix at i " << adjMatrix[i] << endl;
         }
+        /*
+        int temp[(size- 1)* (size-1)];
+        for(int i = 0; i < size*size; i++){
+            if()
+        }*/
+        showStructure();/*
+        for(int i = removal * size; i < size * size;)
+        */
         size--;
         
     }
@@ -368,7 +370,9 @@ bool WeightedGraph::hasProperColoring() const{
 *
 **/
 bool WeightedGraph::areAllEven () const{
+    for(int i = 0; i < size; i ++){
 
+    }
 }
 
 /**

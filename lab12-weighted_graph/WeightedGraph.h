@@ -92,6 +92,23 @@ class WeightedGraph
     inline int conv1D(int row, int col) const {
         return (maxSize * row) + col;
     }
+
+    inline void collapseCol(int start){
+        cout << "IN collapse43" << endl;
+        for(int i = 0; i < size; i++){
+        cout << "index " << start <<" to " << start +1 <<endl;
+            cout << "setting " << adjMatrix[start] << " to " << adjMatrix[start+1] << endl;
+            adjMatrix[start] = adjMatrix[start+1];
+            start+=size;
+        }
+    }
+
+    inline void collapseRow(int start){
+        for(int i = 0; i < size; i++){
+            adjMatrix[start] = adjMatrix[start+size];
+            start++;
+        }
+    }
     
   private:
     
