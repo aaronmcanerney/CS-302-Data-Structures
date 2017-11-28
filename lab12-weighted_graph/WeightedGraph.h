@@ -71,19 +71,19 @@ class WeightedGraph
     void showStructure () const;
 
     // Programming exercise operations
-    void showShortestPaths () const;
+    void showShortestPaths ();
     bool hasProperColoring() const;
     bool areAllEven () const;
     
-    inline bool inBound(int index){
-      if(index >= 0 && index < maxSize*maxSize){
+    inline bool inBound(int index) const{
+      if(index >= 0 && index < size){
         return true;
       }
       return false;
     }
     
-inline bool inBoundV(int index) const {
-      if(index >= 0 && index < maxSize){
+    inline bool inBoundV(int index) const {
+      if(index >= 0 && index < size){
         return true;
       }
       return false;

@@ -25,7 +25,7 @@ int main()
          v2;   // Vertex labels
     char cmd;                     // Input command
     int wt;                       // Edge weight
-
+    
     print_help();
 
     do
